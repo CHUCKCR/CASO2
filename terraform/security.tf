@@ -20,16 +20,15 @@ resource "azurerm_network_security_group" "mySecGroup" {
     }
 
     tags = {
-        environment = "Caso2"
+        environment = "CASO2"
     }
 }
 
 # Vinculamos el security group al interface de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
-resource "azurerm_network_interface_security_group_association" "mySecGroupAssociation" {
+resource "azurerm_network_interface_security_group_association" "mySecGroupAssociation1" {
     count                     = length(var.vms)
     network_interface_id      = azurerm_network_interface.myNic[count.index].id
     network_security_group_id = azurerm_network_security_group.mySecGroup[count.index].id
-
 }
