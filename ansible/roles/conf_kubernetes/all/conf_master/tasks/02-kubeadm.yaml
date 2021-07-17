@@ -29,9 +29,8 @@
   become: yes
 
 - name: CNI
-  command: kubeadm init --pod-network-cidr 192.169.0.0/16
-  register: kubeadm_init
-  become: yes
+  shell: kubeadm init --pod-network-cidr 192.169.0.0/16 2>&1 | tee ./kudeadm_output.txt
+      become: yes
 
 - name: create /root/.kube
   command: mkdir -p /root/.kube
