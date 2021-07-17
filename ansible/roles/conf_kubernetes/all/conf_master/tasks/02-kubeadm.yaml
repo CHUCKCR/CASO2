@@ -4,46 +4,46 @@
 - name: access to worker1
   firewalld:
     rich_rule: rule family=ipv4 source address=10.0.1.12/32 accept
-    permanent: true
+    permanent: yes
     state: enabled
 
 - name: access to Worker02
   firewalld:
     rich_rule: rule family=ipv4 source address=10.0.1.13/32 accept
-    permanent: true
+    permanent: yes
     state: enabled
 
 - name: reload firewall
   command: firewall-cmd --reload
-  become: true
+  become: yes
 
 - name: allow acces to localhost
   firewalld:
     rich_rule: rule family=ipv4 source address=172.17.0.0/16 accept
     zone: public
-    permanent: true
+    permanent: yes
     state: enabled
 
 - name: reload firewall
   command: firewall-cmd --reload
-  become: true
+  become: yes
 
 - name: CNI
-  command: kubeadm init --pod-network-cidr 10.1.1.0/16 --apiserver-advertise-address {{ privada_master }}
+  command: kubeadm init --pod-network-cidr 192.169.0.0/16
   register: kubeadm_init
-  become: true
+  become: yes
 
 - name: create /root/.kube
   command: mkdir -p /root/.kube
-  become: true
+  become: yes
 
 - name: allow access root
   command: cp /etc/kubernetes/admin.conf /root/.kube/config
-  become: true
+  become: yes
 
 - name: change permission admin.conf
   file: 
     path: /root/.kube/config
     owner: root
     group: root
-  become: true
+  become: yes
