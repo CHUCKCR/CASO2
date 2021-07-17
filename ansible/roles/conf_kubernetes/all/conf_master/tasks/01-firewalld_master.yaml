@@ -1,6 +1,5 @@
 ---
-
-- name: firewall conf
+  - name: firewall config
     firewalld:
       port: "{{ item }}"
       permanent: yes
