@@ -1,6 +1,6 @@
 
   - include_tasks: 01-modify_host.yaml
   - include_tasks: 02-firewall.yaml
-  - include_tasks: 03-swap.yaml
+  #- include_tasks: 03-swap.yaml
   - include_tasks: 04-install_docker.yaml
   - include_tasks: 05-install_kubernetes.yaml
