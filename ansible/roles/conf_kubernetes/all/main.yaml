@@ -1,0 +1,10 @@
+
+  - include_tasks: kubernetes.yaml
+
+
+
+  #- include_tasks: 01-hosts.yaml
+  #- include_tasks: 02-firewall.yaml
+  #- include_tasks: 03-swap.yaml
+  #- include_tasks: 04-docker.yaml
+  #- include_tasks: 05-install.yaml

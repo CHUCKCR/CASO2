@@ -2,8 +2,6 @@
 
 - name: install nfs
   hosts: nfs
-  vars_files:
-    - "group_vars/hosts.yaml"
   gather_facts: false
   roles:
     - { role: conf_nfs, become: yes }

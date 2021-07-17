@@ -2,8 +2,6 @@
 
 - name: requirements
   hosts: all
-  vars_files:
-    - "group_vars/hosts.yaml"
   gather_facts: false
   roles:
     - { role: conf_requirements, become: yes }
