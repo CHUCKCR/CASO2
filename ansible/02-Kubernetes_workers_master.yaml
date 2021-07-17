@@ -4,4 +4,4 @@
   hosts: kubernetes
   gather_facts: false
   roles:
-    - { role: conf_kubernetes, become: yes }
+    - { role: conf_kubernetes/all, become: yes }
