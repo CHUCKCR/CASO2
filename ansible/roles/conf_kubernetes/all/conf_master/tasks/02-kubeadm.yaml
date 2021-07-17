@@ -29,7 +29,7 @@
   become: true
 
 - name: CNI
-  command: kubeadm init --pod-network-cidr 10.1.1.0/16 --apiserver-advertise-address {{ ip_master }}
+  command: kubeadm init --pod-network-cidr 10.1.1.0/16 --apiserver-advertise-address {{ privada_master }}
   register: kubeadm_init
   become: true
 
