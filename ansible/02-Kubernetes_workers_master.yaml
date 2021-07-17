@@ -2,6 +2,8 @@
 
 - name: install kubernetes
   hosts: kubernetes
+  vars_files:
+    - "group_vars/hosts.yaml"
   gather_facts: false
   roles:
     - { role: conf_kubernetes/all, become: yes }
