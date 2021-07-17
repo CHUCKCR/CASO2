@@ -1,5 +1,5 @@
   - include_tasks: 01-firewalld_master.yaml
   - include_tasks: 02-kubeadm.yaml
-  - inclide_tasks: 03-sdn.yaml
-  - inclide_tasks: 04-azure_sdn.yaml
-  - inclide_tasks: 05-ingress_controler
+  - include_tasks: 03-sdn.yaml
+  - include_tasks: 04-azure_sdn.yaml
+  - include_tasks: 05-ingress_controler
