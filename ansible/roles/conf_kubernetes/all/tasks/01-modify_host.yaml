@@ -1,12 +1,12 @@
 ---
-- name:  /etc/hosts
-  copy:
-    dest: "/etc/hosts"
-    content: |
-      127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
-      ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 
-	10.0.1.10 master master.acme.es 
-	10.0.1.13 worker01 worker01.acme.es
-	10.0.1.12 worker02 worker02.acme.es5
-	10.0.1.11 nfs nfs.acme.es      
-  become: yes
+- name: Hosts(1/1) - Configuration DNS Servers
+    blockinfile: 
+      path: /etc/hosts 
+      state: present
+      block: |
+        {{ nfs_ip }}  nfs
+        {{ masterc_ip }}  master
+        {{ worker01_ip }}  worker01 
+        {{ worker02_ip }}  worker02
+      insertafter: EOF
+   become: yes
