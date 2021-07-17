@@ -1,0 +1,102 @@
+---
+- name: create a volume group
+  lvg:
+    vg: data_vg
+    pvs: /dev/sdc
+
+
+- name: create a logical volume
+  lvol:
+    vg: data_vg
+    lv: nfs_lv
+    size: 100%FREE
+
+
+- name: create filesystem
+  filesystem:
+    fstype: xfs
+    dev: /dev/data_vg/nfs_lv
+
+
+- name: create a nfs directory
+  file:
+    path: /srv/nfs
+    state: directory
+
+
+- name: point to fstab
+  command: echo "/dev/data_vg/nfs_lv        /srv/nfs                xfs     defaults        0 0" >> /etc/fstab
+
+
+- name: mount logical volume
+  mount:
+    name: /disk
+    src: /dev/data_vg/nfs_lv
+    fstype: xfs
+    state: mounted
+
+
+- name: install nfs-utils
+  dnf:
+    name: nfs-utils
+    state: latest
+  become: yes
+
+
+- name: install net-tools
+  dnf:
+    name: net-tools
+    state: latest
+  become: yes
+
+
+- name: enable nfs-server
+  systemd: 
+    name: nfs-server
+    state: started
+    enabled: yes
+    masked: no
+  become: yes
+
+
+- name: modify /etc/exports
+  copy:
+    dest: "/etc/exports"
+    content: |
+      /srv/nfs {{ master }}
+      /srv/nfs {{ worker01 }}
+      /srv/nfs {{ worker02 }}
+  become: yes
+
+
+- name: write /etc/exports exportfs -r
+  command: exportfs -r
+
+
+- name: write /etc/exports exports exportfs -s
+  command: exportfs -s
+
+
+- name: open firewall port to nfs 
+  firewalld:
+    service: nfs
+    permanent: true
+    state: enabled
+
+
+- name: open firewall to rpc-bind 
+  firewalld:
+    service: rpc-bind
+    permanent: true
+    state: enabled
+
+
+- name: open firewall to mountd 
+  firewalld:
+    service: mountd
+    permanent: true
+    state: enabled
+
+
+- name: reload firewall
+  command: firewall-cmd --reload

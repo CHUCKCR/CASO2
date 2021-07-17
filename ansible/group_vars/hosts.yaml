@@ -1,18 +1,5 @@
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3
-ansible_user=adminUsername
-
-[master]
-20.105.171.176
-
-[workers]
-20.105.172.69
-20.105.172.235
-
-[nfs]
-20.105.172.53
-
-[kubernetes]
-20.105.171.176
-20.105.172.69
-20.105.172.235
+---
+master: 20.105.171.176
+worker1: 20.105.172.69
+worker2: 20.105.172.235
+nfs: 20.105.172.53
