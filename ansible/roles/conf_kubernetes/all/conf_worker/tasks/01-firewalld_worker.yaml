@@ -1,0 +1,16 @@
+- name: open firewalld port 10250  
+  firewalld:
+    port: 10250/tcp
+    zone: public
+    permanent: true
+    state: enabled
+
+- name: open firewalld port 30000-32767 
+  firewalld:
+    port: 30000-32767/tcp
+    zone: public
+    permanent: true
+    state: enabled
+    
+- name: reiniciar firewall
+  command: firewall-cmd --reload

@@ -1,0 +1,4 @@
+
+- name: unir worker al cluster (kubeadm join)
+  command: kubeadm join 20.105.171.176:6443 --token {{ token }} --discovery-token-ca-cert-hash sha256:{{ hash }}
+  become: true

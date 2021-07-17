@@ -1,0 +1,22 @@
+---
+
+- name: install tigera operator
+  command: kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+  become: true
+
+- name: wget calico 
+  get_url: 
+    url: https://docs.projectcalico.org/manifests/custom-resources.yaml
+    dest: /root/custom-resources.yaml
+  become: true
+
+- name: give a CIDR range
+  ansible.builtin.lineinfile:
+    path: /root/custom-resources.yaml
+    regexp: '^(.*)cidr(.*)$'
+    line: '      cidr: 10.1.1.0/16'
+    backrefs: yes
+
+- name: install calico
+  command: kubectl apply -f /root/custom-resources.yaml
+  become: true

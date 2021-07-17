@@ -1,0 +1,12 @@
+- name: open firewall ports to SDN
+    firewalld:
+      port: "{{ item }}"
+      permanent: yes
+      state: enabled
+      immediate: yes
+    with_items:
+      - "8285/tcp"
+      - "8472/tcp"
+
+  - name: Download canal.yaml
+    shell: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml

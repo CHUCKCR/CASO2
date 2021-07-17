@@ -1,0 +1,6 @@
+---
+- name: install kubernetes
+  hosts: workers
+  gather_facts: false
+  roles:
+    - { role: conf_kubernetes/all/conf_worker, become: yes }

@@ -1,0 +1,2 @@
+  - include_tasks: 01-firewalld_worker.yaml
+  - include_tasks: 02-join_worker.yaml

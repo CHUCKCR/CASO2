@@ -1,0 +1,6 @@
+---
+- name: install kubernetes
+  hosts: master
+  gather_facts: false
+  roles:
+    - { role: conf_kubernetes/all/conf_master, become: yes }

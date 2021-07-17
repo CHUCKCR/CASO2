@@ -1,0 +1,47 @@
+---
+
+- name: Ingress controller
+  command: kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/deploy/haproxy-ingress.yaml
+  become: true
+
+
+
+
+  # create kubeadmin user
+
+- name: create user
+  command: useradd -md /home/kubeadmin kubeadmin
+  become: true
+
+- name: create passwd
+  user: 
+    name: kubeadmin
+    update_password: always
+    password: "{{ password|password_hash('sha512') }}"
+  become: true
+
+- name: create kube file
+  file: 
+    path: /home/kubeadmin/.kube
+    state: directory
+  become: yes
+
+- name: copy admin.conf
+  copy:
+    src: "/etc/kubernetes/admin.conf"
+    dest: "/home/kubeadmin/.kube/config"
+    remote_src: yes
+  become: yes
+
+- name: change permission
+  file: 
+    path: /home/kubeadmin/.kube/config
+    owner: kubeadmin
+  become: true
+
+- name: privilege escalation
+  copy:
+    dest: "/etc/sudoers.d/kubeadmin"
+    content: |
+      ALL            ALL = (ALL) NOPASSWD: ALL
+  become: yes
