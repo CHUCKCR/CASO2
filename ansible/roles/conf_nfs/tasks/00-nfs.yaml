@@ -2,7 +2,7 @@
 - name: create a volume group
   lvg:
     vg: data_vg
-    pvs: /dev/sdb
+    pvs: /dev/sdb1
 
 
 - name: create a logical volume
