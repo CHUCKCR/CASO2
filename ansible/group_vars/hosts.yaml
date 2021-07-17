@@ -1,5 +1,21 @@
 ---
-master_ip: 20.105.171.176
-nfs_ip: 20.105.172.69
-worker01_ip: 20.105.172.235
-worker02_ip: 20.105.172.53
+
+privada_master: 10.0.1.10
+privada_worker01: 10.0.1.12
+privada_worker02: 10.0.1.13
+privada_nfs: 10.0.1.11
+
+publica_master: 20.105.171.176
+publica_worker01: 20.105.172.69
+publica_worker02: 20.105.172.235
+publica_nfs: 20.105.172.53
+
+hostname_master: master
+hostname_worker01: worker01
+hostname_worker02: worker02
+hostname_nfs: nfs
+
+domain_master: ccebrom-master.westeurope.cloudapp.azure.com
+domain_worker01: ccebrom-worker01.westeurope.cloudapp.azure.com
+domain_worker02: ccebrom-worker02.westeurope.cloudapp.azure.com
+domain_nfs: ccebrom-nfs.westeurope.cloudapp.azure.com

@@ -1,12 +1,13 @@
 ---
-- name: Hosts(1/1) - Configuration DNS Servers
-    blockinfile: 
-      path: /etc/hosts 
-      state: present
-      block: |
-        {{ nfs_ip }}  nfs
-        {{ masterc_ip }}  master
-        {{ worker01_ip }}  worker01 
-        {{ worker02_ip }}  worker02
-      insertafter: EOF
-   become: yes
+
+- name: modify /etc/hosts
+  copy:
+    dest: "/etc/hosts"
+    content: |
+      127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
+      ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6
+      {{ publica_master }} {{ hostname_master }} {{ domain_master }}
+      {{ publica_worker01 }} {{ hostname_worker01 }} {{ domain_worker01 }}
+      {{ publica_worker02 }} {{ hostname_worker02 }} {{ domain_worker02 }}
+      {{ publica_nfs }} {{ hostname_nfs }} {{ domain_nfs }}      
+  become: yes
