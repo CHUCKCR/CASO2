@@ -63,9 +63,9 @@
   copy:
     dest: "/etc/exports"
     content: |
-      /srv/nfs {{ master }}
-      /srv/nfs {{ worker01 }}
-      /srv/nfs {{ worker02 }}
+      /srv/nfs 20.105.171.176
+      /srv/nfs 20.105.172.69
+      /srv/nfs 20.105.172.235
   become: yes
 
 
