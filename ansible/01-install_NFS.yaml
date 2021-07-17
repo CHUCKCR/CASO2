@@ -2,7 +2,7 @@
 
 - name: install nfs
   hosts: nfs
- vars_files:
+  vars_files:
     - "group_vars/hosts.yaml"
   gather_facts: false
   roles:
