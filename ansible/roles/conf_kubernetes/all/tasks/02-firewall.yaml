@@ -8,7 +8,7 @@
     permanent: true
     state: enabled
 
-- name:reload firewall
+- name: reload firewall
   command: firewall-cmd --reload
   become: yes
 
