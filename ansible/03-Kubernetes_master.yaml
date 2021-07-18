@@ -3,4 +3,4 @@
   hosts: master
   gather_facts: false
   roles:
-    - { role: conf_kubernetes/all/conf_master, become: yes }
+    - { role: conf_kubernetes/conf_master, become: yes }

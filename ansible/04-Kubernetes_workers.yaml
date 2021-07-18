@@ -3,4 +3,4 @@
   hosts: workers
   gather_facts: false
   roles:
-    - { role: conf_kubernetes/all/conf_worker, become: yes }
+    - { role: conf_kubernetes/conf_worker, become: yes }
