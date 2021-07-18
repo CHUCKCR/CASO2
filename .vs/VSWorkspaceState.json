@@ -1,12 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ansible\\roles\\conf_grafana",
-    "\\ansible\\roles\\conf_kubernetes",
-    "\\ansible\\roles\\conf_kubernetes\\all",
-    "\\ansible\\roles\\conf_kubernetes\\all\\conf_master",
-    "\\ansible\\roles\\conf_kubernetes\\all\\conf_master\\tasks",
-    "\\ansible\\roles\\conf_requirements"
+    "\\ansible\\group_vars",
+    "\\ansible\\roles\\conf_kubernetes\\conf_worker",
+    "\\ansible\\roles\\conf_nfs\\tasks",
+    "\\ansible\\roles\\conf_requirements",
+    "\\ansible\\roles\\conf_requirements\\tasks"
   ],
+  "SelectedNode": "\\ansible",
   "PreviewInSolutionExplorer": false
 }
