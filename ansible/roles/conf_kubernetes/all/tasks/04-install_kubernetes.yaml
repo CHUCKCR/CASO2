@@ -1,47 +1,28 @@
 ---
-- name: kubernetes
-  copy:
-    dest: "/etc/yum.repos.d/kubernetes.repo"
-    content: |
-      [kubernetes]
-      name=Kubernetes
-      baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-      enabled=1
-      gpgcheck=1
-      repo_gpgcheck=1
-      gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-      exclude=kubelet kubeadm kubectl
-  become: yes
+- name: create repo
+  file:
+   path: /etc/yum.repos.d/kubernetes.repo
+   state: touch
+    
+- name: repo conf
+  blockinfile:
+   path: /etc/yum.repos.d/kubernetes.repo
+   block: |
+    [Kubernetes]
+    name=Kubernetes
+    baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled=1
+    gpgcheck=1
+    repo_gpgcheck=1
+    gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+      https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 
+- name: install de Kubernetes
+  shell: |
+   dnf install kubelet kubeadm kubectl -y
 
-- name: Kubelet
-  dnf:
-    name: "kubelet"
-    state: present
-    disable_excludes: "kubernetes"
-  become: yes
-
-
-- name: Kubeadm
-  dnf:
-    name: "kubeadm"
-    state: present
-    disable_excludes: "kubernetes"
-  become: yes
-
-
-- name: kubectl
-  dnf:
-    name: "kubectl"
-    state: present
-    disable_excludes: "kubernetes"
-  become: yes
-
-
-- name: start kubelet
+- name: start kubelet.
   systemd:
-    name: kubelet
-    state: started
-    enabled: yes
-    masked: no
-  become: yes
+   name: kubelet 
+   state: started
+   enabled: yes
