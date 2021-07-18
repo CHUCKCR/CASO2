@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ansible\\group_vars",
-    "\\ansible\\roles\\conf_kubernetes\\conf_worker",
-    "\\ansible\\roles\\conf_nfs\\tasks",
-    "\\ansible\\roles\\conf_requirements",
-    "\\ansible\\roles\\conf_requirements\\tasks"
+    "\\ansible"
   ],
-  "SelectedNode": "\\ansible",
+  "SelectedNode": "\\ansible\\05-Nginx.yaml",
   "PreviewInSolutionExplorer": false
 }
