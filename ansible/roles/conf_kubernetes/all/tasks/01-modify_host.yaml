@@ -6,8 +6,8 @@
     content: |
       127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
       ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6
-      {{ publica_master }} {{ hostname_master }} {{ domain_master }}
-      {{ publica_worker01 }} {{ hostname_worker01 }} {{ domain_worker01 }}
-      {{ publica_worker02 }} {{ hostname_worker02 }} {{ domain_worker02 }}
-      {{ publica_nfs }} {{ hostname_nfs }} {{ domain_nfs }}      
+      {{ privada_master }} {{ hostname_master }} {{ domain_master }}
+      {{ privada_worker01 }} {{ hostname_worker01 }} {{ domain_worker01 }}
+      {{ privada_worker02 }} {{ hostname_worker02 }} {{ domain_worker02 }}
+      {{ privada_nfs }} {{ hostname_nfs }} {{ domain_nfs }}      
   become: yes

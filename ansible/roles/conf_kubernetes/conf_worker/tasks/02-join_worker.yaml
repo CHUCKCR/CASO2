@@ -1,4 +1,4 @@
 
-- name: unir worker al cluster (kubeadm join)
+- name: join workers
   command: kubeadm join 20.105.147.144:6443 --token {{ token }} --discovery-token-ca-cert-hash sha256:{{ hash }}
   become: true

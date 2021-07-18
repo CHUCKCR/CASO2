@@ -1,0 +1,8 @@
+---
+- name: install nginx
+  command: kubectl create deployment nginx --image=nginx
+
+- name: run service nginx
+  command: kubectl expose deploy nginx --port 80 --target-port 80 --type NodePort
+
+

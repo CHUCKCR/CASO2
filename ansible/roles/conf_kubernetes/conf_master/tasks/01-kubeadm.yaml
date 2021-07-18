@@ -24,8 +24,8 @@
     state: enabled
   with_items:
 
-     - 'rule family=ipv4 source address=10.0.1.12/32 accept'
-     - 'rule family=ipv4 source address=10.0.1.13/32 accept'
+     - 'rule family=ipv4 source address=10.0.1.12/24 accept'
+     - 'rule family=ipv4 source address=10.0.1.13/24 accept'
       
 - name: Permitimos acceso de los contenedores a localhost
   firewalld:

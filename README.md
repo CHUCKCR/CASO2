@@ -26,12 +26,17 @@ When you have the repo, move to the terraform directory and execute:
 ```
 $ terraform apply
 ```
-
+If you want to run, more or differents VM, you can manage it in terraform/vars, the default VM are:
+```
+default = ["master", "nfs", "worker01", "worker02"] 
+```
 * **Fourth**
 
 You must set up ansible, you can follow this steps [Ansible conf](https://github.com/jadebustos/devopslabs/blob/master/labs-ansible/00-primeros-pasos.md)
 
 * **Fifth**
+
+after the Fourth step you must have a ssh access to your VM and a correct inventory with your owns VM IP, finally you must modify ansible/group_vars/hosts.yaml the same way to inventory with IP.
 
 when you have ping with:
 
@@ -44,8 +49,25 @@ only need to execute
 ```
 $ ./deploy.sh 
 ```
+In group_vars folder you need to paste the token and sha256 for you deploy in un .ymal called join-token.yaml, it is necesarary to authenticate workers when they try to join master.
+
+**Example join-token.yaml** 
+
+```
+---
+token: mjf36669vew3vnphkswapff
+hash: 9409612aa76759f82817857f6f501c786c6e7a61dbd9352e6f913081377892f5
+``` 
+
+If deploy was ok, you should have and Nginx server running, you only need to get name and address this way, run this command in master node.
+
+```
+$kubectl get services
+```
 
 ## ADDITIONAL INFORMATION 📖
+
+
 
 If you need some more information, visit the repository on which the page is based [CLICK HERE](https://github.com/jadebustos/devopslabs) you can find more information that will help you understand the project better.
 

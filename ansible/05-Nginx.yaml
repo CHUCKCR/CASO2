@@ -1,0 +1,6 @@
+---
+- name: install nginx
+  hosts: master
+  gather_facts: false
+  roles:
+    - { role: conf_nginx, become: yes }
