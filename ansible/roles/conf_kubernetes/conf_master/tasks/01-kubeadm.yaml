@@ -38,7 +38,7 @@
      - 'rule family=ipv4 source address=172.17.0.0/16 accept'
 
 - name: install CNI
-  command: kubeadm init --pod-network-cidr 192.169.0.0/16
+  command: kubeadm init --pod-network-cidr 10.1.0.0/16
 
 - name: generate token
   command: kubeadm token create --print-join-command

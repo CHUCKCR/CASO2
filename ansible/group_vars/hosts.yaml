@@ -5,10 +5,10 @@ privada_worker01: 10.0.1.12
 privada_worker02: 10.0.1.13
 privada_nfs: 10.0.1.11
 
-publica_master: 20.105.171.176
-publica_worker01: 20.105.172.69
-publica_worker02: 20.105.172.235
-publica_nfs: 20.105.172.53
+publica_master: 20.93.130.222
+publica_worker01: 20.105.168.135
+publica_worker02: 20.93.131.23
+publica_nfs: 20.101.129.62
 
 hostname_master: master
 hostname_worker01: worker01

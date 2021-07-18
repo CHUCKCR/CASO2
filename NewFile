@@ -1,0 +1,3 @@
+ssh-copy-id -i .ssh/adminUsername adminUsername@20.105.168.135
+
+ssh-copy-id -i .ssh/adminUsername adminUsername@20.105.147.144
