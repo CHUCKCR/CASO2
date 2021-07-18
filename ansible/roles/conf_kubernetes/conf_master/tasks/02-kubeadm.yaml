@@ -10,8 +10,8 @@
       state: enabled
       immediate: yes
     with_items:
-      - "rule family=ipv4 source address={{ privada_worker01 }}/24 accept"
-      - "rule family=ipv4 source address={{ privada_worker02 }}/24 accept"
+      - "rule family=ipv4 source address=10.0.1.12/24 accept"
+      - "rule family=ipv4 source address=10.0.1.13/24 accept"
 
 
   - name: install CNI 
