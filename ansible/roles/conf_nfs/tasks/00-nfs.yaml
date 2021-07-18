@@ -5,11 +5,11 @@
     pvs: /dev/sdc
 
 
-- name: create a logical volume
-  lvol:
-    vg: data_vg
-    lv: nfs_lv
-    size: 100%FREE
+#- name: create a logical volume
+#  lvol:
+#    vg: data_vg
+#    lv: nfs_lv
+#    size: 100%FREE
 
 
 - name: create filesystem
