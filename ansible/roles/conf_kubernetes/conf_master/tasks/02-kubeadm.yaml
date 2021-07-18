@@ -1,52 +1,43 @@
-- name: kubeadm conf
-  command: kubeadm config images pull
 
-- name: access to worker1
-  firewalld:
-    rich_rule: rule family=ipv4 source address=10.0.1.12/32 accept
-    permanent: yes
-    state: enabled
-
-- name: access to Worker02
-  firewalld:
-    rich_rule: rule family=ipv4 source address=10.0.1.13/32 accept
-    permanent: yes
-    state: enabled
-
-- name: reload firewall
-  command: firewall-cmd --reload
-  become: yes
-
-- name: allow acces to localhost
-  firewalld:
-    rich_rule: rule family=ipv4 source address=172.17.0.0/16 accept
-    zone: public
-    permanent: yes
-    state: enabled
-
-- name: reload firewall
-  command: firewall-cmd --reload
-  become: yes
-
-- name: CNI
-  shell: kubeadm init --pod-network-cidr 192.169.0.0/16 2>&1 | tee ./kudeadm_init_output.txt
-  become: yes
+  - name: conf kudeadm
+    command: kubeadm config images pull
 
 
-- name: create /root/.kube
-  command: mkdir -p /root/.kube
-  become: yes
+  - name: allow Access from Workers
+    firewalld:
+      rich_rule: "{{ item }}"
+      permanent: yes
+      state: enabled
+      immediate: yes
+    with_items:
+      - "rule family=ipv4 source address={{ worker01_private_ip }}/24 accept"
+      - "rule family=ipv4 source address={{ worker02_private_ip }}/24 accept"
 
-- name: allow access to root
-  copy:
-   remote_src: yes
-   src: /etc/kubernetes/admin.conf
-   dest: /root/.kube/config
+
+  - name: install CNI 
+    command: kubeadm init --pod-network-cidr 192.169.0.0/16 | tail -2 --ignore-preflight-errors=NumCPU
+    register: kudeadm_init
+  
+
+  - name: cat kudeadm init
+    set_fact: kudeadm_init="{{ kudeadm_init.stdout }}"
 
 
-- name: change permission admin.conf
-  file: 
-    path: /root/.kube/config
-    owner: root
-    group: root
-  become: yes
+  - name: kube Directory
+    file: 
+      path: /root/.kube
+      state: directory
+
+
+  - name: change rute admin.conf
+    copy:
+      remote_src: yes
+      src: /etc/kubernetes/admin.conf
+      dest: /root/.kube/config
+
+
+  - name: allow root
+    file:
+      path: /root/.kube/config
+      owner: "{{ ansible_effective_user_id |string }}"
+      group: "{{ ansible_effective_group_id |string }}"
