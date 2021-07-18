@@ -6,7 +6,7 @@
 
 
 - name: create user
-  command: useradd -md /home/kubeadmin kubeadmin
+  command: useradd -md /home/kubeadmin kubeadm
   become: true
 
 - name: create passwd
