@@ -5,10 +5,6 @@
   become: true
 
 
-
-
-  # create kubeadmin user
-
 - name: create user
   command: useradd -md /home/kubeadmin kubeadmin
   become: true

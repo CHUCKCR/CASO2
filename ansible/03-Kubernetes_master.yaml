@@ -2,5 +2,11 @@
 - name: install kubernetes
   hosts: master
   gather_facts: false
+  vars_prompt:
+  
+    - name: password
+      prompt: Kudeadmin password
+      private: yes
+
   roles:
     - { role: conf_kubernetes/conf_master, become: yes }
