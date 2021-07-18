@@ -37,9 +37,12 @@
   command: mkdir -p /root/.kube
   become: yes
 
-- name: allow access root
-  command: cp /etc/kubernetes/admin.conf /root/.kube/config
-  become: yes
+- name: allow access to root
+  copy:
+   remote_src: yes
+   src: /etc/kubernetes/admin.conf
+   dest: /root/.kube/config
+
 
 - name: change permission admin.conf
   file: 
