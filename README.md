@@ -1,6 +1,6 @@
 ﻿# EU DEVOPS & CLOUD UNIR
 
-Using this repository, you can run in a while, a Kubernetes cluster in Azure with a Grafana server running, using terraform (IAC) and ansible to automate the deploy.
+Using this repository, you can run in a while, a Kubernetes cluster in Azure with a NGINX server running, using terraform (IAC) and ansible to automate the deploy.
 
 ## FIRST OF ALL 🚀
 
